@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Test',
+  title: 'DOC GCOM',
   tagline: 'Dinosaurs are super super cool',
   url: 'https://github.com',
   baseUrl: '/wiki/',
@@ -28,54 +28,61 @@ const config = {
     locales: ['fr'],
   },
 
-  presets: [
-    [
-      'classic',
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
-        docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
-        theme: {
-          customCss: require.resolve('./src/css/custom.css'),
-        },
-      }),
-    ],
-  ],
+	presets: [
+		[
+		'@docusaurus/preset-classic',
+		{
+			docs: {
+				routeBasePath: 'docs',
+				path: 'docs',
+				sidebarPath: require.resolve('./sidebars.js'),
+				lastVersion: 'current',
+				onlyIncludeVersions: ['current'],
+			},
+			theme: {
+				customCss: require.resolve('./src/css/custom.css'),
+			},
+		},
+		],
+	],
+
+  plugins: [
+		[
+			'@docusaurus/plugin-content-docs',
+			{
+				id: 'docs-accessibilite',
+				path: 'docs-accessibilite',
+				routeBasePath: 'docs-accessibilite',
+				sidebarPath: require.resolve('./sidebars.js'),
+			}, 
+		],
+	],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'My Site',
+        title: 'DOC GCOM',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
         },
         items: [
+
           {
             type: 'doc',
             docId: 'intro',
             position: 'left',
             label: 'Tutorial',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+
           {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
-            position: 'right',
-          },
+            to: '/docs-accessibilite/intro',    // ./docs-api/Intro.md
+            label: 'Accessibilité',
+            position: 'left',
+            activeBaseRegex: `/docs-accessibilite/`,
+          }
+
         ],
       },
       footer: {
@@ -84,48 +91,14 @@ const config = {
           {
             title: 'Docs',
             items: [
-              {
-                label: 'Tutorial',
-                to: '/docs/intro',
-              },
-            ],
-          },
-          {
-            title: 'Community',
-            items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
-              },
+            {
+              label: 'Tutorial',
+              to: '/docs/intro',
+            },
             ],
           },
         ],
         copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
-      },
-      prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
       },
     }),
 };
